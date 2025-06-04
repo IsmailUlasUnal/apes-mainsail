@@ -13,107 +13,6 @@
                         hide-details
                         dense />
                 </v-col>
-                <v-col class="offset-4 col-4 d-flex align-center justify-end">
-                    <v-tooltip v-if="selectedJobs.length" top>
-                        <template #activator="{ on, attrs }">
-                            <v-btn
-                                color="error"
-                                class="px-2 minwidth-0 ml-3"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="deleteSelectedDialog = true">
-                                <v-icon>{{ mdiDelete }}</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>{{ $t('History.Delete') }}</span>
-                    </v-tooltip>
-                    <v-tooltip top>
-                        <template #activator="{ on, attrs }">
-                            <v-btn
-                                class="px-2 minwidth-0 ml-3"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="addMaintenanceDialog = true">
-                                <v-icon>{{ mdiNotebookPlus }}</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>{{ $t('History.AddMaintenance') }}</span>
-                    </v-tooltip>
-                    <v-tooltip v-if="!allLoaded" top>
-                        <template #activator="{ on, attrs }">
-                            <v-btn
-                                :loading="loadings.includes('historyLoadAll')"
-                                class="px-2 minwidth-0 ml-3"
-                                v-bind="attrs"
-                                v-on="on"
-                                @click="refreshHistory">
-                                <v-icon>{{ mdiDatabaseArrowDownOutline }}</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>{{ $t('History.LoadCompleteHistory') }}</span>
-                    </v-tooltip>
-                    <v-tooltip top>
-                        <template #activator="{ on, attrs }">
-                            <v-btn class="px-2 minwidth-0 ml-3" v-bind="attrs" v-on="on" @click="exportHistory">
-                                <v-icon>{{ mdiDatabaseExportOutline }}</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>{{ $t('History.TitleExportHistory') }}</span>
-                    </v-tooltip>
-                    <v-menu :offset-y="true" :close-on-content-click="false">
-                        <template #activator="{ on, attrs }">
-                            <v-tooltip top>
-                                <template #activator="{ on: onToolTip }">
-                                    <v-btn class="px-2 minwidth-0 ml-3" v-bind="attrs" v-on="{ ...on, ...onToolTip }">
-                                        <v-icon>{{ mdiCog }}</v-icon>
-                                    </v-btn>
-                                </template>
-                                <span>{{ $t('History.Settings') }}</span>
-                            </v-tooltip>
-                        </template>
-                        <v-list>
-                            <v-list-item class="minHeight36">
-                                <v-checkbox
-                                    class="mt-0"
-                                    hide-details
-                                    :input-value="showMaintenanceEntries"
-                                    :label="$t('History.MaintenanceEntries')"
-                                    @change="showMaintenanceEntries = !showMaintenanceEntries" />
-                            </v-list-item>
-                            <v-list-item class="minHeight36">
-                                <v-checkbox
-                                    class="mt-0"
-                                    hide-details
-                                    :input-value="showPrintJobs"
-                                    :label="$t('History.PrintJobs')"
-                                    @change="showPrintJobs = !showPrintJobs" />
-                            </v-list-item>
-                            <v-divider />
-                            <template v-if="printStatusArray.length">
-                                <v-list-item v-for="status of printStatusArray" :key="status.name" class="minHeight36">
-                                    <v-checkbox
-                                        class="mt-0"
-                                        hide-details
-                                        :input-value="status.showInTable"
-                                        :label="`${status.displayName} (${status.value})`"
-                                        @change="changeStatusVisible(status)" />
-                                </v-list-item>
-                                <v-divider />
-                            </template>
-                            <v-list-item
-                                v-for="(header, index) of configHeaders"
-                                :key="'history-list-panel-header-option-' + index"
-                                class="minHeight36">
-                                <v-checkbox
-                                    v-model="header.visible"
-                                    class="mt-0"
-                                    hide-details
-                                    :label="header.text"
-                                    @change="changeColumnVisible(header.value)" />
-                            </v-list-item>
-                        </v-list>
-                    </v-menu>
-                </v-col>
             </v-row>
         </v-card-text>
         <v-divider class="mb-3" />
@@ -270,7 +169,7 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 filterable: false,
             },
             {
-                text: this.$t('History.Filename').toString() as string,
+                text: 'Name',// this.$t('History.Filename').toString() as string,
                 value: 'filename',
                 align: 'left',
                 configable: false,
@@ -284,6 +183,7 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 visible: true,
                 filterable: false,
             },
+            /*
             {
                 text: this.$t('History.Filesize').toString() as string,
                 value: 'size',
@@ -292,6 +192,8 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 visible: true,
                 outputType: 'filesize',
             },
+
+
             {
                 text: this.$t('History.LastModified').toString() as string,
                 value: 'modified',
@@ -300,6 +202,8 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 visible: true,
                 outputType: 'date',
             },
+
+             */
             {
                 text: this.$t('History.StartTime').toString() as string,
                 value: 'start_time',
@@ -316,22 +220,26 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 visible: true,
                 outputType: 'date',
             },
+            /*
             {
                 text: this.$t('History.EstimatedTime').toString() as string,
                 value: 'estimated_time',
-                align: 'left',
+                alestimated_timeign: 'left',
                 configable: true,
                 visible: true,
                 outputType: 'time',
             },
+
+             */
             {
-                text: this.$t('History.PrintTime').toString() as string,
+                text: 'Brew Duration', //this.$t('History.PrintTime').toString() as string,
                 value: 'print_duration',
                 align: 'left',
                 configable: true,
                 visible: true,
                 outputType: 'time',
             },
+            /*
             {
                 text: this.$t('History.TotalTime').toString() as string,
                 value: 'total_duration',
@@ -403,6 +311,8 @@ export default class HistoryListPanel extends Mixins(BaseMixin, HistoryMixin, Hi
                 configable: true,
                 visible: true,
             },
+
+             */
         ]
 
         this.moonrakerHistoryFields.forEach((sensor) => {

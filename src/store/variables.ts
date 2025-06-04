@@ -87,11 +87,9 @@ export const maxGcodeHistory = 50
  */
 export const allDashboardPanels = [
     'toolhead-control',
-    'extruder-control',
     'macros',
     'machine-settings',
     'miniconsole',
-    'miscellaneous',
     'spoolman',
     'temperature',
     'webcam',

@@ -46,19 +46,6 @@
                 @click="clickUploadButton">
                 <v-icon>{{ mdiUpload }}</v-icon>
             </v-btn>
-            <v-btn
-                :title="$t('Files.CreateNewDirectory')"
-                class="px-2 minwidth-0 ml-3"
-                @click="showCreateDirectoryDialog = true">
-                <v-icon>{{ mdiFolderPlus }}</v-icon>
-            </v-btn>
-            <gcodefiles-create-directory-dialog
-                :show-dialog="showCreateDirectoryDialog"
-                @close="showCreateDirectoryDialog = false" />
-            <v-btn :title="$t('Files.RefreshCurrentDirectory')" class="px-2 minwidth-0 ml-3" @click="refreshFileList">
-                <v-icon>{{ mdiRefresh }}</v-icon>
-            </v-btn>
-            <gcodefiles-panel-header-settings />
         </v-col>
     </v-row>
 </template>
@@ -78,12 +65,9 @@ import { validGcodeExtensions } from '@/store/variables'
 export default class GcodefilesPanelHeader extends Mixins(BaseMixin, GcodefilesMixin) {
     mdiCloudDownload = mdiCloudDownload
     mdiDelete = mdiDelete
-    mdiFolderPlus = mdiFolderPlus
     mdiMagnify = mdiMagnify
-    mdiRefresh = mdiRefresh
     mdiUpload = mdiUpload
 
-    showCreateDirectoryDialog = false
     showDeleteSelectedDialog = false
 
     @Ref('fileUpload') fileUpload!: HTMLInputElement

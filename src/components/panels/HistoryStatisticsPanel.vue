@@ -3,66 +3,28 @@
         :icon="mdiChartAreaspline"
         :title="$t('History.Statistics')"
         card-class="history-statistics-panel"
-        :collapsible="true">
+        :collapsible="true"
+    >
         <v-card-text class="pa-0">
             <v-row align="center">
-                <v-col class="col-12 col-sm-6 col-md-4">
+                <v-col cols="6">
                     <v-simple-table>
                         <tbody>
-                            <tr v-for="total in totals" :key="total.title">
-                                <td>{{ total.title }}</td>
-                                <td class="text-right">{{ total.value }}</td>
-                            </tr>
+                        <tr v-for="total in totals" :key="total.title">
+                            <td>{{ total.title }}</td>
+                            <td class="text-right">{{ total.value }}</td>
+                        </tr>
                         </tbody>
                     </v-simple-table>
                 </v-col>
-                <v-col class="col-12 col-sm-6 col-md-4">
-                    <history-all-print-status-chart v-if="togglePrintStatus === 'chart'" :value-name="toggleValue" />
-                    <history-all-print-status-table v-else :value-name="toggleValue" />
-                    <div class="text-center mb-3">
-                        <v-btn-toggle v-model="togglePrintStatus" small mandatory>
-                            <v-btn small value="chart">{{ $t('History.Chart') }}</v-btn>
-                            <v-btn small value="table">{{ $t('History.Table') }}</v-btn>
-                        </v-btn-toggle>
-                        <v-tooltip v-if="!allLoaded" top>
-                            <template #activator="{ on, attrs }">
-                                <v-btn
-                                    outlined
-                                    small
-                                    :loading="loadings.includes('historyLoadAll')"
-                                    class="ml-3 minwidth-0 px-2"
-                                    color="primary"
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    @click="refreshHistory">
-                                    <v-icon small>{{ mdiDatabaseArrowDownOutline }}</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>{{ $t('History.LoadCompleteHistory') }}</span>
-                        </v-tooltip>
-                    </div>
-                    <div class="text-center mb-3">
-                        <v-btn-toggle v-model="toggleValue" small mandatory>
-                            <v-btn v-for="option in toggleValueOptions" :key="option.value" small :value="option.value">
-                                {{ option.text }}
-                            </v-btn>
-                        </v-btn-toggle>
-                    </div>
-                </v-col>
-                <v-col class="col-12 col-sm-12 col-md-4">
-                    <history-filament-usage v-if="toggleChart === 'filament_usage'" />
-                    <history-printtime-avg v-else-if="toggleChart === 'printtime_avg'" />
-                    <div class="text-center mt-3">
-                        <v-btn-toggle v-model="toggleChart" small mandatory>
-                            <v-btn small value="filament_usage">{{ $t('History.FilamentUsage') }}</v-btn>
-                            <v-btn small value="printtime_avg">{{ $t('History.PrinttimeAvg') }}</v-btn>
-                        </v-btn-toggle>
-                    </div>
+                <v-col class="d-flex justify-center" cols="6">
+                    <history-printtime-avg />
                 </v-col>
             </v-row>
         </v-card-text>
     </panel>
 </template>
+
 
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
@@ -143,16 +105,6 @@ export default class HistoryStatisticsPanel extends Mixins(BaseMixin, HistoryMix
             return Math.round(this.selectedPrintTime / this.selectedJobs.length)
 
         return 0
-    }
-
-    get totalFilamentUsed() {
-        return this.$store.state.server.history.job_totals?.total_filament_used ?? 0
-    }
-
-    get totalFilamentUsedFormat() {
-        const value = Math.round(this.totalFilamentUsed / 100) / 10
-
-        return `${value} m`
     }
 
     get selectedFilamentUsed() {
@@ -260,10 +212,6 @@ export default class HistoryStatisticsPanel extends Mixins(BaseMixin, HistoryMix
             {
                 title: this.$t('History.AvgPrinttime') as string,
                 value: this.formatPrintTime(this.avgPrintTime, false),
-            },
-            {
-                title: this.$t('History.TotalFilamentUsed') as string,
-                value: this.totalFilamentUsedFormat,
             },
             {
                 title: this.$t('History.TotalJobs') as string,

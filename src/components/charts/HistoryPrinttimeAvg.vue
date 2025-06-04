@@ -39,7 +39,7 @@ export default class HistoryPrinttimeAvg extends Mixins(BaseMixin, HistoryMixin,
             },
             xAxis: {
                 type: 'category',
-                data: ['0-2h', '2-6h', '6-12h', '12-24h', '>24h'],
+                data: ['0-90s', '90-180s', '>180s'],
                 splitLine: {
                     show: true,
                     lineStyle: {
@@ -52,10 +52,10 @@ export default class HistoryPrinttimeAvg extends Mixins(BaseMixin, HistoryMixin,
                 },
             },
             yAxis: {
-                name: this.$t('History.HistoryPrinttimeAVG'),
+                name: "Gram",
                 type: 'value',
-                minInterval: 10,
-                maxInterval: 100,
+                minInterval: 300,
+                maxInterval: 600,
                 nameLocation: 'end',
                 nameGap: 5,
                 nameTextStyle: {
