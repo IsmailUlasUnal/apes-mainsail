@@ -1,23 +1,22 @@
 import Dashboard from '../pages/Dashboard.vue'
 import Webcam from '../pages/Webcam.vue'
 import Farm from '../pages/Farm.vue'
-import Console from '../pages/Console.vue'
 import Files from '../pages/Files.vue'
 import History from '../pages/History.vue'
 import Timelapse from '../pages/Timelapse.vue'
 import Machine from '../pages/Machine.vue'
+import RecipeCreator from '../pages/RecipeCreator.vue'
 import { AsyncComponent, Component } from 'vue'
 
 import {
     mdiMonitorDashboard,
     mdiWebcam,
-    mdiConsoleLine,
     mdiGrid,
     mdiFileDocumentMultipleOutline,
-    mdiVideo3d,
     mdiHistory,
     mdiTimelapse,
     mdiWrench,
+    mdiChefHat
 } from '@mdi/js'
 
 const routes: AppRoute[] = [
@@ -31,6 +30,17 @@ const routes: AppRoute[] = [
         showInNavi: true,
         position: 10,
     },
+    {
+        name: 'recipegcodecreator',
+        title: 'Recipe Creator',
+        path: '/recipes',
+        icon: mdiChefHat,
+        component: RecipeCreator,
+        alwaysShow: true,
+        showInNavi: true,
+        position: 20,
+    },
+
     {
         name: 'farm',
         title: 'Printers',

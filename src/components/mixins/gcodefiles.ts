@@ -106,6 +106,7 @@ export default class GcodefilesMixin extends Vue {
                 class: 'text-no-wrap',
                 outputType: 'length',
             },
+
             {
                 text: this.$t('Files.LayerHeight').toString(),
                 value: 'layer_height',

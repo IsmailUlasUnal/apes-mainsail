@@ -295,7 +295,7 @@ export default class App extends Mixins(BaseMixin, ThemeMixin) {
 
         // if a theme sidebar logo is set, use it
         if ((this.theme?.logo?.show ?? false) && this.sidebarLogo.endsWith('.svg')) {
-            const response = await fetch(this.sidebarLogo)
+            const response = await fetch("/Users/ulasunal/Desktop/Github/Bitirme-Setup/apes-mainsail/public/img/logo.png")
             if (!response.ok) return
 
             const text = await response.text()

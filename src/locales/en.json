@@ -192,9 +192,9 @@
         "StartPrint": {
             "Cancel": "Cancel",
             "DoYouWantToStartFilename": "Do you want to start {filename}?",
-            "DoYouWantToStartFilenameFilament": "Do you want to start {filename} with the following filament?",
-            "Headline": "Start Job",
-            "Print": "print",
+            "DoYouWantToStartFilenameFilament": "Do you want to start {filename}?",
+            "Headline": "Start Brewing",
+            "Print": "Brew",
             "Timelapse": "Timelapse"
         }
     },
@@ -219,6 +219,52 @@
         "EmergencyStop": "Emergency Stop",
         "No": "No",
         "Yes": "Yes"
+    },
+    "RecipeCreator": {
+        "Headline": "Recipe G-Code Creator",
+        "Clear": "Clear",
+        "SelectCommand": "Select Command",
+        "AddCommand": "Add Command",
+        "Recipe": "Recipe",
+        "Commands": "Commands",
+        "GenerateGCode": "Generate G-Code",
+        "EmptyState": "Empty",
+        "EmptyStateDescription": "There is no command right now.",
+        "Configure": "Configure",
+        "UploadPreview": "Upload Preview",
+        "PreviewCommands": "Commands",
+        "LoadRecipe": "Load Recipe",
+        "Diameter": "Diameter",
+        "Duration": "Duration",
+        "Direction": "Direction",
+        "StartDiameter": "StartDiameter",
+        "EndDiameter": "EndDiameter",
+        "SpiralType": "Spiral Type",
+        "WaitTime": "Wait Time",
+        "Message": "Message",
+        "Optional": "Optional",
+        "Cancel": "Cancel",
+        "Add": "Add",
+        "DownloadReady": "Ready to download!",
+        "DownloadSuccess": "Download Success",
+        "UploadRecipe": "Upload G-Code formatted recipe",
+        "FileReadError": "Error occured during file read",
+        "Filename": "Filename",
+        "GCodeGenerated": "G-Code is ready to download",
+        "Download": "Download",
+        "Circle": "Circle",
+        "Spiral": "Spiral",
+        "Wait": "Wait",
+        "Clockwise": "Clockwise",
+        "clockwise": "Clockwise",
+        "Counterclockwise": "Counter Clockwise",
+        "counterclockwise": "Counter Clockwise",
+        "InsideOut": "Inside Out",
+        "inside-out": "Inside Out",
+        "OutsideIn": "Outside In",
+        "outside-in": "Outside In",
+        "Type": "Type",
+        "Waiting": "Waiting"
     },
     "Files": {
         "AddBatchToQueue": "Add batch to Queue",
@@ -472,7 +518,7 @@
         "Pause": "Pause",
         "RemoveFromQueue": "Remove from Queue",
         "Start": "Start",
-        "StartPrint": "Start Job"
+        "StartPrint": "Start Brewing"
     },
     "Machine": {
         "ConfigFilesPanel": {
@@ -858,6 +904,7 @@
     "Router": {
         "Console": "Console",
         "Dashboard": "Dashboard",
+        "Recipe Creator": "Recipe Creator",
         "G-Code Files": "G-Code Files",
         "G-Code Viewer": "G-Code Viewer",
         "Heightmap": "Heightmap",
